@@ -1,0 +1,18 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\middlewares",
+    "\\backend\\models",
+    "\\backend\\routes",
+    "\\backend\\routes\\api",
+    "\\backend\\routes\\api\\auth",
+    "\\backend\\routes\\api\\user",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\signin"
+  ],
+  "SelectedNode": "\\backend\\routes\\api\\auth\\auth.controller.js",
+  "PreviewInSolutionExplorer": false
+}
