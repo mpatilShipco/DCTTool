@@ -1,0 +1,18 @@
+{
+  "name": "decisiontree_prj",
+  "version": "1.0.0",
+  "description": "DCTTool DecisionTree Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "#DCTTool-DecisionTreeExample1"
+  ],
+  "author": "mpatilShipco",
+  "license": "ISC",
+  "dependencies": {
+    "decision-tree": "^0.3.1",
+    "js-decisiontree": "^1.0.1"
+  }
+}
