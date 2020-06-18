@@ -35,13 +35,13 @@ app.listen(port, () => {
 /* =======================
     CONNECT TO MONGODB SERVER
 ==========================*/
-mongoose.connect(config.mongodbUri)
-mongoose.Promise = global.Promise
-const db = mongoose.connection
-db.on('error', console.error)
-db.once('open', ()=>{
-    console.log('connected to mongodb server')
-})
+  mongoose.connect(config.mongodbUri)
+  mongoose.Promise = global.Promise
+  const db = mongoose.connection
+  db.on('error', console.error)
+  db.once('open', ()=>{
+      console.log('connected to mongodb server')
+  })
 
 const User = require('./models/user')
 
@@ -110,7 +110,7 @@ app.post('/login', (req, res) => {
 
 
 app.updatenew = (req, res) => {
-	res.send('PUT Called');
+	//res.send('PUT Called');
   try {
 
   // read the token from header or url
@@ -165,3 +165,9 @@ app.updatenew = (req, res) => {
 }
 
 
+app.check = (req, res) => {
+    res.json({
+        success: true,
+        info: req.decoded
+    })
+}

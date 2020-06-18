@@ -24,7 +24,7 @@ export class AuthService {
 
   // Sign-up
   signUp(user: User): Observable<any> {
-    let api = `${this.endpoint}/api/auth/register`;
+    let api = `${this.endpoint}/register`;
     return this.http.post(api, user)
       .pipe(
         catchError(this.handleError)
@@ -33,7 +33,7 @@ export class AuthService {
 
   // Sign-in
   signIn(user: User) {
-    return this.http.post<any>(`${this.endpoint}/api/auth/login`, user)
+    return this.http.post<any>(`${this.endpoint}/login`, user)
       .subscribe((res: any) => {
         //localStorage.setItem('access_token', res.token)
         
@@ -52,7 +52,7 @@ export class AuthService {
   updateuser(user: User) {
     console.log("UUUUUUUUUUUUUUSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSEEEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRR");
     console.log(user);
-    return this.http.put<any>(`${this.endpoint}/api/auth/updatenew`, user)
+    return this.http.put<any>(`${this.endpoint}/updatenew`, user)
       .subscribe((res: any) => {
         
       })
@@ -78,7 +78,7 @@ export class AuthService {
 
   // User profile
   getUserProfile(id): Observable<any> {
-    let api = `${this.endpoint}/api/auth/check?token=${id}`;
+    let api = `${this.endpoint}/check?token=${id}`;
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}

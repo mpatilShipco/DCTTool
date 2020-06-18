@@ -33,23 +33,28 @@ const upload = multer({storage: storage});
 app.post('/api/uploadfile', upload.single("uploadfile"), (req, res) =>{
     //importfile(__basedir + '/uploads/' + req.file.filename);
     if (fs.existsSync(__basedir + '/uploads/' + req.file.filename)) {
-        console.log('__basedir = ' + __basedir);
-        console.log("File Existsssssssssssssssssssssssssssssssssssssssssssssssssssssss" + __basedir + '/uploads/' + req.file.filename);
+        //console.log('__basedir = ' + __basedir);
+        //console.log("File Existsssssssssssssssssssssssssssssssssssssssssssssssssssssss" + __basedir + '/uploads/' + req.file.filename);
     }
     
     //importfile(__basedir + '/uploads/' + req.file.filename);
     filePath = __basedir + '/uploads/' + req.file.filename;
     let options = {
       mode: 'text',
-      pythonPath: 'C:/Users/RahulS/AppData/Local/Programs/Python/Python38-32',
+      //pythonPath: 'C:/Users/RahulS/AppData/Local/Programs/Python/Python38-32',
+      //pythonPath: 'C:/Users/RahulS/AppData/Local/Programs/Python/Python38-32/python.exe',
       //pythonPath: '/usr/bin/python',
       //pythonPath: 'C:\\Users\\RahulS\\AppData\\Local\\Programs\\Python\\Python38-32',
+      pythonPath: 'python',
+      //pythonPath: 'C:/Users/RahulS/AppData/Local/Programs/Python/Python38-32',
       pythonOptions: ['-u'], // get print results in real-time
-      scriptPath: 'C:/Users/RahulS/appDir/DCTTool/fileparsing/my_script.py',
+      //scriptPath: 'C:/Users/RahulS/appDir/DCTTool/fileparsing/my_script.py',
       //scriptPath: 'C:\\Users\\RahulS\\appDir\\DCTTool\\fileparsing\\my_script.py,'
       //scriptPath: 'C://Users//RahulS//appDir//DCTTool//fileparsing//my_script.py,'
+      //scriptPath: 'my_script.py',
+      scriptPath: 'C:/Users/RahulS/appDir/DCTTool/fileparsing/',
       //args: [req.file.fieldname]
-      args: ['value1', 'value2', 'value3']
+      args: [req.file.filename]
     };
 
     // var options = {
@@ -60,8 +65,9 @@ app.post('/api/uploadfile', upload.single("uploadfile"), (req, res) =>{
     //   args: ['value1', 'value2', 'value3']
     // }; 
 
-    PythonShell.run('C:/Users/RahulS/appDir/DCTTool/fileparsing/my_script.py', options, function (err, results) {
+    //PythonShell.run('C:/Users/RahulS/appDir/DCTTool/fileparsing/my_script.py', options, function (err, results) {
     //PythonShell.run('C:/Users/RahulS/appDir/DCTTool/fileparsing/my_script.py', null, function (err, results) {
+    PythonShell.run('my_script.py', options, function (err, results) {
       if (err) throw err;
       // results is an array consisting of messages collected during execution
       console.log('results: %j', results);
