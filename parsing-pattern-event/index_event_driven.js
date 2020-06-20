@@ -39,7 +39,34 @@ function readFile(err,data,fileName) {
     eventsEmitter.emit('display',data);
 }
 
+function readFileContent(fileName){
+    console.log("Reading " + fileName + " file started:");
+    fs.readFile(fileName, 'utf8', readFile);
+}
+
+function  displayFileContent(data){
+    console.log("File Data:");
+    console.log(data);
+    eventsEmitter.emit('finished');
+}
+
+function finished(){
+  console.log("Reading and Printing File content job is done successfully.");
+}
+
+function readFile(err,data,fileName) {
+    console.log("Reading " + fileName + " file done successfully.");
+    eventsEmitter.emit('display',data);
+}
+
+
 app.post('/api/uploadfile', upload.single("uploadfile"), (req, res) =>{
+  eventsEmitter.on('read',readFileContent);
+  eventsEmitter.on('display',displayFileContent);
+  eventsEmitter.on('finished',finished);
+  eventsEmitter.emit('read',__basedir + '/uploads/' + req.file.filename);
+
+
     if (fs.existsSync(__basedir + '/uploads/' + req.file.filename)) {
         filePath = __basedir + '/uploads/' + req.file.filename;
         let options = {
@@ -49,13 +76,12 @@ app.post('/api/uploadfile', upload.single("uploadfile"), (req, res) =>{
           scriptPath: 'C:/Users/RahulS/appDir/DCTTool/parsing-pattern-event/',
           args: [req.file.filename]
         };
-        eventsEmitter.emit('read',req.file.filename);
-        eventsEmitter.on('read',readFileContent);
+        
         PythonShell.run('fileparsing.py', options, function (err, results) {
           if (err) throw err;
           console.log('results: %j', results);
         });
-        eventsEmitter.on('finished',finished);
+        
 
         res.json({
             'msg': 'File uploaded/import successfully!', 'file': req.file
