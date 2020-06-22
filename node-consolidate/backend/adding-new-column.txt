@@ -1,0 +1,13 @@
+#if addcolumn <= 0 :
+            #addcolumn = 1;
+            #sheet.insert_cols(max_column+1)
+
+#worksheetadcolumn = wb[sheet]
+                #new_column = worksheetadcolumn.max_column + 1
+                #for rowy, value in enumerate(column, start=1):
+                    #ws.cell(row=rowy, column=new_column, value=value)
+        	#print('Val = ',cell_obj.value)
+	        #print('I = ',i)
+	        #print('J = ',j)
+
+wb.close();
