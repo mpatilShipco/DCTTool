@@ -13,6 +13,7 @@ from openpyxl.styles import Color, Fill
 from openpyxl.cell import Cell
 from openpyxl.styles import Font
 from openpyxl.styles.colors import Color
+import json
 
 basepath = os.path.dirname(os.path.realpath(__file__));
 sysargv_path = sys.argv[0];
@@ -50,4 +51,6 @@ for i in range(2,max_row+1):
             sheet.cell(row=i, column=max_column).value = str(sheet.cell(row=i, column=max_column).value) + str('Invalid Member');
             sheet.cell(row=i, column=max_column).font = Font(color = "FF0000");
 wb.save(full_file_path)
-print("Done with File Full Path = ", full_file_path);
+#print("Done with File Full Path = ", full_file_path);
+return_info  = json.dumps({'status': 'success', 'filename':sys.argv[1]});
+print(return_info);

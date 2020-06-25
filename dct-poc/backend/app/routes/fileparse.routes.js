@@ -33,6 +33,7 @@ const storage = multer.diskStorage({
 });
  
 const upload = multer({storage: storage});
+//const upload = multer({storage: storage}).single("uploadfile");
 
 const fileparserDef = require("../fileparserDef/fileparserDef");
 var fileparser = fileparserDef.fileuploadsTemplateOne("Uploads");
@@ -110,6 +111,10 @@ module.exports = function(app) {
   });
   
   app.post('/api/uploadfile', upload.single("uploadfile"), (req, res) =>{
+    
+    console.log('REQUESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT = ')
+    console.log(req.file);
+
     //copy to diff directory once file come
     var pathtowatch = __cGlobPathUpload;
     var oldpathwithfile = pathtowatch + req.file.filename;
@@ -248,7 +253,8 @@ module.exports = function(app) {
               const output = await run(req.file.filename)
               logOutput('main')(output.message)
               res.json({
-                'msg': 'File uploaded/import successfully!', 'newmsg' : 'success'
+                'msg': 'File uploaded/import successfully!',
+                'filename' : req.file.filename
               });
               process.exit(0)
             } catch (e) {
