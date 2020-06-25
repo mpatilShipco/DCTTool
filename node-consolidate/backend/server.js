@@ -14,11 +14,14 @@ const dbConfig = require("./app/config/db.config");
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
+//var corsOptions = {
+  //origin: "http://localhost:8081"
+//};
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
+app.use(cors())
+app.options('*', cors())
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -50,7 +53,8 @@ require("./app/routes/user.routes")(app);
 require("./app/routes/fileparse.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+//const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
