@@ -2,8 +2,6 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\backend\\middlewares",
-    "\\backend\\models",
     "\\backend\\routes",
     "\\backend\\routes\\api",
     "\\backend\\routes\\api\\auth",

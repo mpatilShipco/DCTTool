@@ -16,20 +16,19 @@ from openpyxl.styles.colors import Color
 import json
 
 basepath = os.path.dirname(os.path.realpath(__file__));
+frontpath = basepath.split('backend');
+
 sysargv_path = sys.argv[0];
 filename = sys.argv[1];
 
-full_file_path = os.path.dirname(os.path.realpath(__file__)) + '/uploads/' + sys.argv[1];
+full_file_path = str(frontpath[0]) + '/src/assets/uploads/' + str(sys.argv[1]);
 
 if(os.path.exists(full_file_path)) :
     excel_file = full_file_path
     Obj_excelread = pd.read_excel(excel_file);
     header_excel = Obj_excelread.head();
 else :
-	print('Error');
-
-print('full_file_path');
-print(full_file_path);
+    print('Error');
 
 wb=load_workbook(full_file_path)
 sheet=wb.active
@@ -45,8 +44,8 @@ for i in range(2,max_row+1):
         cell_obj=sheet.cell(row=i,column=j);
         err_cell_val=sheet.cell(row=i, column=max_column);
         if cell_obj.value not in aCustomers and j == 1:
-	        sheet.cell(row=i, column=max_column).value = str(sheet.cell(row=i, column=max_column).value) + str('Invalid Customer');
-	        sheet.cell(row=i, column=max_column).font = Font(color = "FF0000");
+            sheet.cell(row=i, column=max_column).value = str(sheet.cell(row=i, column=max_column).value) + str('Invalid Customer');
+            sheet.cell(row=i, column=max_column).font = Font(color = "FF0000");
         if cell_obj.value not in aMembers and j == 2:
             sheet.cell(row=i, column=max_column).value = str(sheet.cell(row=i, column=max_column).value) + str('Invalid Member');
             sheet.cell(row=i, column=max_column).font = Font(color = "FF0000");

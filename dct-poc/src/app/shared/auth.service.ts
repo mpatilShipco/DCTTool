@@ -81,9 +81,12 @@ export class AuthService {
 
 
 downloadValidateFile(filename) {
+  //let imgsrc = "./assets/uploads/" + filename;
+  let imgsrc = "./assets/uploads/" + "SACO-CL_OFR_Excel.xlsx";
+
   let link = document.createElement("a");
-    link.download = "sample";
-    link.href = "../../../backend/uploads/" + filename;
+    link.download = filename;
+    link.href = imgsrc;    
     link.click();
 }
         
