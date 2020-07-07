@@ -1,15 +1,28 @@
 <div class="d-flex justify-content-center align-items-center container " style="margin-top: 100px;">
-    <div class="row ">
-	    <form class="form-upload" [formGroup]="uploadForm" (ngSubmit)="fileUpload()" enctype="multipart/form-data">
-	        <h3 class="h3 mb-3 font-weight-normal text-center">File Upload</h3>
-	        <div class="form-group">
-	            <label>File Upload</label>
-	            <input type="File" class="form-control" name="uploadfile" (change)="onFileSelect($event)" required>
-	        </div>
-	        <div class="form-group">
-	            <a href="#" (click)="downloadFile()">Download Sample File</a>
-	        </div>
-	        <button type="submit" class="btn btn-block btn-primary">Upload</button>
-	    </form>
+	<div class="row ">
+		<form class="form-upload" [formGroup]="uploadForm" (ngSubmit)="fileUpload()" enctype="multipart/form-data">
+			<h3 class="h3 mb-3 font-weight-normal text-center">File Upload</h3>
+			<div class="form-group">
+				<label>File Upload</label>
+				<input type="File" class="form-control" name="uploadfile" (change)="onFileSelect($event)" required>
+			</div>
+			<div class="form-group">
+				<a href="#" (click)="downloadFile()">Download Sample File</a>
+			</div>
+			<button type="submit" class="btn btn-block btn-primary">Upload</button>
+		</form>
 	</div>
+
+	<ng-template ngxPermissionsOnly="Corporate">
+		<div>You can see this text congrats</div>
+	</ng-template>
+
+	<ng-template ngxPermissionsOnly="Member">
+		<div>You can see this text congrats</div>
+	</ng-template>
+
+	<ng-template ngxPermissionsOnly="Customer">
+		<div>You can see this text congrats</div>
+	</ng-template>
+
 </div>

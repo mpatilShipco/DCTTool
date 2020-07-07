@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    public router: Router
+    public router: Router,
+    public permissionsService: NgxPermissionsService
   ) {
   }
 
@@ -35,6 +37,11 @@ export class AuthService {
       .subscribe((res: any) => {
         console.log("res = ");
         console.log(res);
+        localStorage.setItem('accessToken', res.accessToken);
+        localStorage.setItem('roles', res.usertype);
+        const perm = [res.roles];
+        this.permissionsService.loadPermissions(perm);
+
         /*
         //localStorage.setItem('access_token', res.token)
         //this.getUserProfile(res._id).subscribe((res) => {

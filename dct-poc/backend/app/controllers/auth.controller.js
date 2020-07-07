@@ -97,15 +97,34 @@ exports.signin = (req, res) => {
 
       var authorities = [];
 
-      for (let i = 0; i < user.roles.length; i++) {
+      /*for (let i = 0; i < user.roles.length; i++) {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
-      }
+      }*/
+
+
+      // console.log("UUUUUUUUSER -------");
+      // console.log(user);
+      // console.log("----------------------");
+
+
       res.status(200).send({
         id: user._id,
         username: user.username,
         email: user.email,
         roles: authorities,
-        accessToken: token
+        accessToken: token,
+        usertype: user.usertype
       });
+
+      
+      /*res.status(200).send({
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        roles: user.roles,
+        accessToken: token
+      });*/
+
+
     });
 };
