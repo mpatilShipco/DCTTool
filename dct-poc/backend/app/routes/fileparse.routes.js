@@ -34,7 +34,7 @@ const upload = multer({storage: storage});
 //const upload = multer({storage: storage}).single("uploadfile");
 
 const fileparserDef = require("../fileparserDef/fileparserDef");
-var fileparser = fileparserDef.fileuploadsTemplateOne("Uploads");
+//var fileparser = fileparserDef.fileuploadsTemplateOne("Uploads");
 
 
 function runPythonShelltoParseFile(reqestedfilename) {
@@ -115,7 +115,11 @@ module.exports = function(app) {
 
           (async () => {
             try {
-              const output = await runPythonShelltoParseFile(req.file.filename)
+              //var fileparser = fileparserDef.fileuploadsTemplateOne(req.file.filename);
+
+              const output = await fileparserDef.fileuploadsTemplateOne(req.file.filename)
+
+              //const output = await runPythonShelltoParseFile(req.file.filename)
               logOutput('main')(output.message)
               res.json({
                 'msg': 'File uploaded/import successfully!',

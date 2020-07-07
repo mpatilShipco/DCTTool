@@ -1,8 +1,8 @@
 const fileparse = require("../controllers/fileparse");
 
-exports.fileuploadsTemplateOne = (label) => {
+exports.fileuploadsTemplateOne = (reqestedfilename) => {
     return {
-            OnlineUploads: function (filename) {
+            OnlineUploads: function (reqestedfilename) {
             },
             AccurateUploads: function (filename) {
             }
